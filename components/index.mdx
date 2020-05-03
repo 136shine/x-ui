@@ -1,0 +1,61 @@
+---
+name: 快速开始
+route: /
+---
+# 快速开始
+
+## 安装
+
+```bash
+npm i dora-ui -S
+
+# or
+
+yarn add dora-ui
+
+```
+
+## 如何使用
+
+全量引入
+
+```js
+import { Toast } from 'dora-ui';
+import 'dora-ui/dist/dora-ui.min.css';
+```
+
+按需引入
+
+手动按需引入
+
+```js
+import Toast from 'dora-ui/lib/toast';
+// less (需项目支持less)
+import 'dora-ui/lib/toast/style';
+// or css
+import 'dora-ui/lib/toast/style/css';
+```
+
+使用[babel-plugin-import](https://www.npmjs.com/package/babel-plugin-import)
+
+```js
+// .babelrc.js
+module.exports = {
+  plugins: [
+    [
+      'import',
+      {
+        libraryName: 'dora-ui',
+        libraryDirectory: 'es', // default: lib, es有利于tree shakeing
+        style: true // 引入less(需项目支持less) or 'css' 引入css
+      }
+    ]
+  ]
+};
+```
+
+直接如下引入组件即可
+
+```js
+import { Toast } from 'dora-ui';
+```
