@@ -1,4 +1,17 @@
+// module.exports = {
+//     plugins: ['gatsby-theme-docz', 'gatsby-plugin-less'],
+// };
 module.exports = {
-    plugins: ['gatsby-theme-docz', 'gatsby-plugin-less'],
-};
+    plugins: [
+      'gatsby-theme-docz',
+      'gatsby-plugin-less',
+      {
+        resolve: 'gatsby-plugin-import',
+        options: {
+          libraryName: 'antd',
+          style: 'css',
+        },
+      },
+    ],
+  };
   
