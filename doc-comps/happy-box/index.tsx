@@ -3,8 +3,10 @@ import Editor from 'react-simple-code-editor';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import useToggle from 'react-use/esm/useToggle';
 import { Divider, Typography, Tooltip, message } from 'antd';
-import { CodeOutlined, CopyOutlined } from '@ant-design/icons';
+import { CodeOutlined, CopyOutlined, CodeSandboxOutlined } from '@ant-design/icons';
 import { highlight, languages } from 'prismjs/components/prism-core';
+import { getParameters } from 'codesandbox/lib/api/define';
+import packageJson from '../../package.json';
 
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
@@ -22,6 +24,10 @@ interface Props {
 
 const HappyBox: React.FC<Props> = ({ code, title, desc, children }) => {
   const [isEditVisible, toggleEditVisible] = useToggle(false);
+
+  const handleOpenEditor = () => {
+    window.location.href = editOnCodeSandbox(code)
+  }
 
   return (
     <div className="code-box">
@@ -41,6 +47,11 @@ const HappyBox: React.FC<Props> = ({ code, title, desc, children }) => {
           <Tooltip placement="top" title={isEditVisible ? '收起代码' : '显示代码'}>
             <div onClick={toggleEditVisible}>
                 <CodeOutlined />
+            </div>
+          </Tooltip>
+          <Tooltip placement="top" title={'edit in codesandbox'}>
+            <div onClick={handleOpenEditor}>
+                <CodeSandboxOutlined />
             </div>
           </Tooltip>
         </div>
@@ -69,6 +80,22 @@ const HappyBox: React.FC<Props> = ({ code, title, desc, children }) => {
       </div>
     );
   }
+
+  function editOnCodeSandbox (code) {
+    const parameters = getParameters({
+        files: {
+          'main.ts': {
+              content: code,
+              isBinary: false
+          },
+          'package.json': {
+              content: { ...packageJson }
+          }
+        },
+    });
+      
+    return `https://codesandbox.io/api/v1/sandboxes/define?parameters=${parameters}`;
+ }
 };
 
 export default HappyBox;

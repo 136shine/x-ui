@@ -13,10 +13,10 @@
     "build:types": "tsc --emitDeclarationOnly",
     "clean": "rimraf types lib esm dist",
     "build": "npm run clean && npm run build:types && gulp",
-    "test": "jest",                         
-    "test:watch": "jest --watch",           
-    "test:coverage": "jest --coverage",     
-    "test:update": "jest --updateSnapshot" 
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:update": "jest --updateSnapshot"
   },
   "keywords": [],
   "author": "",
@@ -43,6 +43,7 @@
     "antd": "^4.2.0",
     "babel-plugin-import": "^1.13.0",
     "classnames": "^2.2.6",
+    "codesandbox": "^2.1.14",
     "commitizen": "^4.0.5",
     "cz-conventional-changelog": "^3.1.0",
     "docz": "^2.3.1",
@@ -92,6 +93,7 @@
     }
   },
   "dependencies": {
+    "@alex_xu/xui": "^0.1.0-snapshot.43",
     "@babel/runtime": "^7.9.6",
     "prop-types": "^15.7.2"
   },
